@@ -4,7 +4,7 @@
 Source files go in /src, temporary development files go in /build, final production bundle goes in /lib.
 
 ## Node environment
-NVM is a great library that allows you to switch between different versions/installs of NPM. We are developing on Node 0.7.1.
+NVM is a great library that allows you to switch between different versions/installs of NPM. We are developing on Node 7.1.0.
 `npm link` will link Petra to your node_modules, allowing you to run `require("petra")`
 
 ## Linters

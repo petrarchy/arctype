@@ -1,5 +1,7 @@
-import App from "./App";
+import App from "./components/App";
+import Login from "./components/Login";
 
 export {
-    App
+    App,
+    Login
 };

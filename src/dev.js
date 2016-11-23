@@ -1,9 +1,11 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./components/App";
 
-document.write("<div id='root'></div>");
+if (document.getElementById("root") == null){
+    document.write("<div id='root'></div>");
+}
 
 ReactDOM.render(
     <App />,

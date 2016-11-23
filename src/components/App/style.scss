@@ -1,0 +1,80 @@
+$background: #eee;
+
+body,
+button,
+input {
+    background-color: $background;
+    font-family: "Source Sans Pro";
+}
+
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="file"],
+input[type="tel"],
+input[type="url"],
+input[type="reset"],
+input[type="submit"],
+button {
+    padding: 0 3px;
+    height: 37px;
+}
+
+input + label {
+    margin-right: .25rem;
+}
+
+label + input {
+    margin-left: .5rem;
+}
+
+button,
+input {
+    border: 1px solid;
+}
+
+.login {
+    width: 100%;
+}
+
+button {
+    opacity: 1;
+    border-radius: .5rem;
+}
+
+.container {
+    width: 100%;
+    background-color: white;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 640px) {
+    body {
+        padding: 1rem 0;
+    }
+
+    .container {
+        width: 80%;
+        left: 10%;
+    }
+
+    input::placeholder {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .container {
+        width: 60%;
+        left: 20%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .container {
+        width: 55%;
+        left: 22.5%;
+    }
+}
