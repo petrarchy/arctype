@@ -1,17 +1,21 @@
 
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {Provider} from "react-redux";
 import style from "./style.scss";
 
 import store from "../../reducers/store";
-import Login from "../Login";
 
 export default class App extends Component {
+    static propTypes = {
+        children: PropTypes.element
+    }
+
     render() {
+        const {children} = this.props;
         return (
             <Provider store={store}>
                 <div className={style.container}>
-                    <Login/>
+                    {children}
                 </div>
             </Provider>
         );
