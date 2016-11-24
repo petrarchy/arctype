@@ -1,0 +1,4 @@
+export const SET_USERNAME = "SET_USERNAME";
+export const SET_PASSWORD = "SET_PASSWORD";
+export const TOGGLE_REMEMBER = "TOGGLE_REMEMBER";
+export const LOGIN_SUBMIT = "LOGIN_SUBMIT";
