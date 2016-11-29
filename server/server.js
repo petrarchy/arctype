@@ -3,13 +3,17 @@ const morgan = require("morgan");
 const graphqlHTTP = require("express-graphql");
 const schema = require("./schema");
 const webpack = require("webpack");
-const webpackMiddleware = require("webpack-dev-middleware");
+const webpackDevMiddleware = require("webpack-dev-middleware");
+const webpackHotMiddleware = require("webpack-hot-middleware");
 
 const app = express();
 
 const PORT = 3000;
 
-app.use(webpackMiddleware(webpack(require("../webpack.config.development.js"))));
+const compiler = webpack(require("../webpack.config.development.js"));
+
+app.use(webpackDevMiddleware(compiler));
+app.use(webpackHotMiddleware(compiler));
 
 app.use(morgan("dev"));
 

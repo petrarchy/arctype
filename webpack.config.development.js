@@ -7,7 +7,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: "./src/dev.js",
+    entry: ["./src/dev.js", "webpack-hot-middleware/client"],
     devtool: "inline-source-map",
     output: {
         path: path.join(__dirname, "/build"),
@@ -22,7 +22,7 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                loader: "babel"
+                loaders: ["react-hot", "babel"]
             },
             {
                 test: /\.(scss|css)$/,
@@ -31,6 +31,9 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
         new HtmlWebpackPlugin({
             title: "App",
             filename: "index.html"

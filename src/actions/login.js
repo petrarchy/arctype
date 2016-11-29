@@ -1,22 +1,23 @@
-import {SET_USERNAME, SET_PASSWORD, TOGGLE_REMEMBER, LOGIN_SUBMIT} from "./types";
+import {LOGIN_USERNAME, LOGIN_PASSWORD, LOGIN_REMEMBER, LOGIN_SUBMIT} from "./types";
+import query from "./query";
 
 export function setUsername(value) {
     return {
-        type: SET_USERNAME,
+        type: LOGIN_USERNAME,
         value
     };
 }
 
 export function setPassword(value) {
     return {
-        type: SET_PASSWORD,
+        type: LOGIN_PASSWORD,
         value
     };
 }
 
 export function toggleRemember(value) {
     return {
-        type: TOGGLE_REMEMBER,
+        type: LOGIN_REMEMBER,
         value
     };
 }
@@ -29,14 +30,7 @@ export function login() {
 
 export function attemptLogin() {
     return async function (dispatch) {
-        const res = await fetch("/graphql", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({ query: "{ hello }" })
-        });
+        const res = await query({ query: "{ hello }" });
         console.log("res: ", res);
         dispatch(login());
     };

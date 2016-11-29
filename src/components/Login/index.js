@@ -14,7 +14,8 @@ class Login extends Component {
         remember: PropTypes.bool,
         onUsernameChange: PropTypes.func,
         onPasswordChange: PropTypes.func,
-        onRememberToggle: PropTypes.func
+        onRememberToggle: PropTypes.func,
+        onLogin: PropTypes.func
     }
 
     render() {
@@ -29,10 +30,10 @@ class Login extends Component {
                 </div>
                 <div className={theme.property}>
                     <label className={theme.propertyLabel} htmlFor="pword">{constants.PASSWORD}</label>
-                    <input type="text" id="pword" placeholder={constants.PASSWORD} required={true} value={password} onChange={(e) => { onPasswordChange(e.target.value); }} />
+                    <input type="password" id="pword" placeholder={constants.PASSWORD} required={true} value={password} onChange={(e) => { onPasswordChange(e.target.value); }} />
                 </div>
                 <div className={theme.login}>
-                    <button type="submit" onClick={(e) => { onLogin(); }}>{constants.SUBMIT}</button>
+                    <button type="submit" onClick={() => { onLogin(); }}>{constants.SUBMIT}</button>
                 </div>
             </div>
         );
