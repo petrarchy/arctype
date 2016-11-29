@@ -1,10 +1,11 @@
-const express = require("express");
-const morgan = require("morgan");
-const graphqlHTTP = require("express-graphql");
-const schema = require("./schema");
-const webpack = require("webpack");
-const webpackDevMiddleware = require("webpack-dev-middleware");
-const webpackHotMiddleware = require("webpack-hot-middleware");
+// const express = require("express");
+import express from "express";
+import morgan from "morgan";
+import graphqlHTTP from "express-graphql";
+import schema from "./schema";
+import webpack from "webpack";
+import webpackDevMiddleware from "webpack-dev-middleware";
+import webpackHotMiddleware from "webpack-hot-middleware";
 
 const app = express();
 

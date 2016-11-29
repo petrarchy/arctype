@@ -1,11 +1,11 @@
-const {
+import {
     GraphQLSchema,
     GraphQLObjectType,
     GraphQLInputObjectType,
     GraphQLString,
     GraphQLID,
     GraphQLNonNull
-} = require("graphql");
+} from "graphql";
 
 var currentId = 0;
 const db = {};
@@ -15,7 +15,7 @@ const UserType = new GraphQLObjectType({
     fields: {
         name: {type: new GraphQLNonNull(GraphQLString)},
         displayName: {type: GraphQLString},
-        uid: {type: new GraphQLNonNull(GraphQLID)}
+        id: {type: new GraphQLNonNull(GraphQLID)}
     }
 });
 
@@ -34,13 +34,13 @@ module.exports = new GraphQLSchema({
             user: {
                 type: UserType,
                 args: {
-                    uid: {
-                        name: "uid",
+                    id: {
+                        name: "id",
                         type: GraphQLID
                     }
                 },
                 resolve (_, params) {
-                    return db[params.uid];
+                    return db[params.id];
                 }
             }
         }
@@ -61,7 +61,7 @@ module.exports = new GraphQLSchema({
                     const newUser = {
                         name: params.data.name,
                         displayName: params.data.displayName,
-                        uid: newId
+                        id: newId
                     };
                     db[newId] = newUser;
                     return newUser;

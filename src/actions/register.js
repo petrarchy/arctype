@@ -27,7 +27,7 @@ export function attemptRegister(name, displayName) {
             createUser(data:{name:"${name}", displayName:"${displayName}"}) {
                 name
                 displayName
-                uid
+                id
             }
         }`});
         console.log("res: ", await res.json());
