@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from "react";
 import {themr} from "react-css-themr";
 import {connect} from "react-redux";
 
-import {setUsername, setPassword, toggleRemember} from "../../actions/login";
+import {setUsername, setPassword, toggleRemember, attemptLogin} from "../../actions/login";
 import style from "./style.scss";
 import constants from "../constants";
 
@@ -18,7 +18,7 @@ class Login extends Component {
     }
 
     render() {
-        const {theme, username, password, remember, onUsernameChange, onPasswordChange, onRememberToggle} = this.props;
+        const {theme, username, password, remember, onUsernameChange, onPasswordChange, onRememberToggle, onLogin} = this.props;
         return (
             <div className={theme.container}>
                 <div className={theme.property}>
@@ -32,7 +32,7 @@ class Login extends Component {
                     <input type="text" id="pword" placeholder={constants.PASSWORD} required={true} value={password} onChange={(e) => { onPasswordChange(e.target.value); }} />
                 </div>
                 <div className={theme.login}>
-                    <button type="submit" disabled="enabled">{constants.SUBMIT}</button>
+                    <button type="submit" onClick={(e) => { onLogin(); }}>{constants.SUBMIT}</button>
                 </div>
             </div>
         );
@@ -50,7 +50,8 @@ const ReduxLogin = connect((state) => {
     return {
         onUsernameChange: (val) => { dispatch(setUsername(val)); },
         onPasswordChange: (val) => { dispatch(setPassword(val)); },
-        onRememberToggle: (val) => { dispatch(toggleRemember(val)); }
+        onRememberToggle: (val) => { dispatch(toggleRemember(val)); },
+        onLogin: (val) => { dispatch(attemptLogin(val)); }
     };
 })(Login);
 

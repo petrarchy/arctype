@@ -1,5 +1,5 @@
 
-const package = require("./package");
+const pkg = require("./package");
 const webpack = require("webpack");
 const path = require("path");
 const autoprefixer = require("autoprefixer");
@@ -35,7 +35,7 @@ module.exports = {
         // new ExtractTextPlugin("bundle.css", {allChunks: true}),
         new webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify("production"),
-            VERSION: JSON.stringify(package.version)
+            VERSION: JSON.stringify(pkg.version)
         })
     ]
-}
+};

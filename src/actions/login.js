@@ -21,8 +21,23 @@ export function toggleRemember(value) {
     };
 }
 
-export function login(){
+export function login() {
     return {
         type: LOGIN_SUBMIT
+    };
+}
+
+export function attemptLogin() {
+    return async function (dispatch) {
+        const res = await fetch("/graphql", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({ query: "{ hello }" })
+        });
+        console.log("res: ", res);
+        dispatch(login());
     };
 }
