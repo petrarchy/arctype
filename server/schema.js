@@ -4,26 +4,28 @@ import {
     GraphQLInputObjectType,
     GraphQLString,
     GraphQLID,
-    GraphQLNonNull
+    GraphQLNonNull,
+    GraphQLBoolean,
+    GraphQLList
 } from "graphql";
 
-var currentId = 0;
-const db = {};
+import UserModel from "./model/user";
+
 
 const UserType = new GraphQLObjectType({
     name: "User",
     fields: {
-        name: {type: new GraphQLNonNull(GraphQLString)},
-        displayName: {type: GraphQLString},
-        id: {type: new GraphQLNonNull(GraphQLID)}
+        uid: {type: new GraphQLNonNull(GraphQLString)},
+        displayName: {type: GraphQLString}
     }
 });
 
 const CreateUserType = new GraphQLInputObjectType({
     name: "UserInput",
     fields: {
-        name: {type: new GraphQLNonNull(GraphQLString)},
-        displayName: {type: GraphQLString}
+        uid: {type: new GraphQLNonNull(GraphQLString)},
+        displayName: {type: GraphQLString},
+        password: {type: GraphQLString}
     }
 });
 
@@ -34,13 +36,35 @@ module.exports = new GraphQLSchema({
             user: {
                 type: UserType,
                 args: {
-                    id: {
-                        name: "id",
-                        type: GraphQLID
+                    uid: {
+                        name: "uid",
+                        type: new GraphQLNonNull(GraphQLString)
                     }
                 },
                 resolve (_, params) {
-                    return db[params.id];
+                    // TODO: There is a problem with returning this properly
+                    return UserModel
+                        .find({uid: params.uid})
+                        .exec();
+                }
+            },
+            users: {
+                type: new GraphQLList(UserType),
+                args: {
+                    uid: {
+                        name: "uid",
+                        type: GraphQLString
+                    }
+                },
+                resolve (_, params) {
+                    // Get all users unless a specific id is given to retrieve
+                    var o = {};
+                    if (params.uid) {
+                        o.uid = params.uid;
+                    }
+                    return UserModel
+                        .find(o)
+                        .exec();
                 }
             }
         }
@@ -49,22 +73,24 @@ module.exports = new GraphQLSchema({
         name: "Mutation",
         fields: {
             createUser: {
-                type: UserType,
+                type: GraphQLBoolean,
                 args: {
                     data: {
                         name: "data",
                         type: new GraphQLNonNull(CreateUserType)
                     }
                 },
-                resolve (_, params) {
-                    const newId = currentId++;
-                    const newUser = {
-                        name: params.data.name,
-                        displayName: params.data.displayName,
-                        id: newId
-                    };
-                    db[newId] = newUser;
-                    return newUser;
+                async resolve (_, params) {
+                    try {
+                        const userModel = new UserModel(params.data);
+                        const newUser = await userModel.save();
+                        if (!newUser) {
+                            throw new Error("Error creating new user");
+                        }
+                        return true;
+                    } catch (err) {
+                        throw new Error(`Error creating new user: ${err.message}`);
+                    }
                 }
             }
         }

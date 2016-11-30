@@ -46,7 +46,7 @@ const ReduxRegister = connect((state) => {
     return {
         onUsernameChange: (val) => { dispatch(setUsername(val)); },
         onDisplayNameChange: (val) => { dispatch(setDisplayName(val)); },
-        onRegister: (uname, dname) => { dispatch(attemptRegister(uname, dname)); }
+        onRegister: (uname, dname) => { dispatch(attemptRegister(uname, "test", dname)); }
     };
 })(Register);
 

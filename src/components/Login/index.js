@@ -33,7 +33,7 @@ class Login extends Component {
                     <input type="password" id="pword" placeholder={constants.PASSWORD} required={true} value={password} onChange={(e) => { onPasswordChange(e.target.value); }} />
                 </div>
                 <div className={theme.login}>
-                    <button type="submit" onClick={() => { onLogin(); }}>{constants.SUBMIT}</button>
+                    <button type="submit" onClick={() => { onLogin(username, password); }}>{constants.SUBMIT}</button>
                 </div>
             </div>
         );
@@ -52,7 +52,7 @@ const ReduxLogin = connect((state) => {
         onUsernameChange: (val) => { dispatch(setUsername(val)); },
         onPasswordChange: (val) => { dispatch(setPassword(val)); },
         onRememberToggle: (val) => { dispatch(toggleRemember(val)); },
-        onLogin: (val) => { dispatch(attemptLogin(val)); }
+        onLogin: (uid, password) => { dispatch(attemptLogin(uid, password)); }
     };
 })(Login);
 

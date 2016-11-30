@@ -28,9 +28,16 @@ export function login() {
     };
 }
 
-export function attemptLogin() {
+export function attemptLogin(uid, password) {
     return async function (dispatch) {
-        const res = await query({ query: "{ hello }" });
+        const res = await fetch("/login", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({uid: uid, password: password})
+        });
         console.log("res: ", res);
         dispatch(login());
     };

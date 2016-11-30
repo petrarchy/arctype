@@ -21,14 +21,10 @@ export function submit() {
     };
 }
 
-export function attemptRegister(name, displayName) {
+export function attemptRegister(name, password, displayName) {
     return async function (dispatch) {
         const res = await query({query: `mutation {
-            createUser(data:{name:"${name}", displayName:"${displayName}"}) {
-                name
-                displayName
-                id
-            }
+            createUser(data:{uid:"${name}", password:"${password}", displayName:"${displayName}"})
         }`});
         console.log("res: ", await res.json());
         dispatch(submit());
