@@ -15,7 +15,6 @@ export default {
         const user = db.get("users")
             .get(params.uid)
             .value();
-        console.log("USER: ", user);
         return user;
     }
 };

@@ -10,7 +10,6 @@ export default {
         const users = db.get("users")
             .values()
             .value();
-        console.log("USERS: ", users);
         return users;
     }
 };
