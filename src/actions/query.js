@@ -5,6 +5,7 @@ export default async function(q){
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
+        credentials: "same-origin",
         body: JSON.stringify(q)
     });
 }

@@ -29,33 +29,44 @@ app.use(morgan("dev"));
 
 app.use(session({
     secret: "secretkey",
-    cookie: {maxAge: 60 * 10 * 1000},
-    resave: true,
-    saveUninitalized: true,
+    cookie: {maxAge: 10 * 60 * 1000},
+    resave: false,
+    saveUninitalized: false,
 }));
-
 
 // GraphQL endpoint
-app.use("/graphql", graphqlHTTP({
-    schema: schema,
-    graphiql: true
+app.use("/graphql", graphqlHTTP((req) => {
+    return {
+        schema: schema,
+        rootValue: req,
+        graphiql: true
+    };
 }));
 
-app.post("/login", (req, res) => {
+// Login endpoint. This authenticates the session. We could instead do
+// this using GraphQL.
+app.post("/login", function (req, res) {
+    console.log("initial session: ", req.session);
     const {uid, password} = req.body;
     const user = db.get("users").get(uid).value();
     if (!user || user.password != password) {
-        return res.send(false);
+        return res.send("login failed");
     }
-
     req.session.user = user;
     req.session.authenticated = true;
-    res.send(true);
+    console.log("new session: ", req.session);
     console.log("user authenticated: ", user);
+    res.send("login successful");
 });
 
-app.get("/test", (req, res) => {
-    res.send(req.authenticated);
+// Test authentication
+app.get("/auth", function (req, res) {
+    console.log("session: ", req.session);
+    if(req.session.authenticated){
+        res.send("authenticated.");
+    } else {
+        res.send("not authenticated");
+    }
 });
 
 const server = app.listen(PORT, () => { console.log(`Demo server listening on port ${server.address().port}`); });

@@ -1,4 +1,5 @@
 import {LOGIN} from "./types";
+import query from "./query";
 
 export function setUsername(value) {
     return {
@@ -35,9 +36,12 @@ export function attemptLogin(uid, password) {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
+            credentials: "same-origin",
             body: JSON.stringify({uid: uid, password: password})
         });
         console.log("res: ", res);
+        const auth = await query({query: "{ auth }"});
+        console.log("auth test: ", auth);
         dispatch(login());
     };
 }

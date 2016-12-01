@@ -24,4 +24,4 @@ export default {
             throw new Error(`Error creating new user: ${err.message}`);
         }
     }
-}
+};
