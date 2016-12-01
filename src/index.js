@@ -1,7 +1,5 @@
-import App from "./components/App";
-import Login from "./components/Login";
+import components from "./components";
 
-export {
-    App,
-    Login
+export default {
+    ...components
 };

@@ -5,24 +5,15 @@ import morgan from "morgan";
 
 import bodyParser from "body-parser";
 
-import mongoose from "mongoose";
-import connectMongodbSession from "connect-mongodb-session";
-const MongoDBStore = connectMongodbSession(session);
-
 import graphqlHTTP from "express-graphql";
 import schema from "./schema";
+import db from "./db";
 
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 
-import UserModel from "./model/user";
-
 const app = express();
-const store = new MongoDBStore({
-    uri: "mongodb://localhost/sessions",
-    collection: "sessions"
-});
 
 const PORT = 3000;
 
@@ -37,7 +28,6 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 
 app.use(session({
-    store: store,
     secret: "secretkey",
     cookie: {maxAge: 60 * 10 * 1000},
     resave: true,
@@ -51,22 +41,21 @@ app.use("/graphql", graphqlHTTP({
     graphiql: true
 }));
 
-app.post("/login", async function(req, res) {
-    console.log("REQ.SESSION: ", req.session);
-    console.log("REQ.BODY: ", req.body);
-    var user = await UserModel
-        .findOne({
-            uid: req.body.uid
-        }).exec();
-    if (!user) {
+app.post("/login", (req, res) => {
+    const {uid, password} = req.body;
+    const user = db.get("users").get(uid).value();
+    if (!user || user.password != password) {
         return res.send(false);
     }
-    console.log("user logged in: ", user);
-    req.session.user = user.uid;
+
+    req.session.user = user;
     req.session.authenticated = true;
     res.send(true);
+    console.log("user authenticated: ", user);
 });
 
-mongoose.connect("mongodb://localhost/graphql");
+app.get("/test", (req, res) => {
+    res.send(req.authenticated);
+});
 
 const server = app.listen(PORT, () => { console.log(`Demo server listening on port ${server.address().port}`); });

@@ -1,22 +1,22 @@
 import {combineReducers} from "redux";
-import {LOGIN_USERNAME, LOGIN_PASSWORD, LOGIN_REMEMBER} from "../actions/types";
+import {LOGIN} from "../actions/types";
 
 function usernameReducer(state = "", action){
-    if (action.type === LOGIN_USERNAME){
+    if (action.type === LOGIN.USERNAME){
         return action.value;
     }
     return state;
 }
 
 function passwordReducer(state = "", action){
-    if (action.type === LOGIN_PASSWORD){
+    if (action.type === LOGIN.PASSWORD){
         return action.value;
     }
     return state;
 }
 
 function rememberReducer(state = false, action){
-    if (action.type === LOGIN_REMEMBER){
+    if (action.type === LOGIN.REMEMBER){
         return action.value;
     }
     return state;

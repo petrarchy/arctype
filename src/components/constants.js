@@ -7,6 +7,6 @@ export default {
     PASSWORD: "Password",
     REMEMBER: "Remember",
     SUBMIT: "Submit",
-    DISPLAYNAME: "Display name",
+    FULLNAME: "Full name",
     REGISTER: "Register"
 };

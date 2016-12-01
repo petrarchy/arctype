@@ -1,30 +1,37 @@
-import {REGISTER_USERNAME, REGISTER_DISPLAYNAME, REGISTER_SUBMIT} from "./types";
+import {REGISTER} from "./types";
 import query from "./query";
 
 export function setUsername(value) {
     return {
-        type: REGISTER_USERNAME,
+        type: REGISTER.USERNAME,
         value
     };
 }
 
-export function setDisplayName(value) {
+export function setPassword(value) {
     return {
-        type: REGISTER_DISPLAYNAME,
+        type: REGISTER.PASSWORD,
+        value
+    };
+}
+
+export function setFullName(value) {
+    return {
+        type: REGISTER.FULLNAME,
         value
     };
 }
 
 export function submit() {
     return {
-        type: REGISTER_SUBMIT
+        type: REGISTER.SUBMIT
     };
 }
 
-export function attemptRegister(name, password, displayName) {
+export function attemptRegister(name, password, fullName) {
     return async function (dispatch) {
         const res = await query({query: `mutation {
-            createUser(data:{uid:"${name}", password:"${password}", displayName:"${displayName}"})
+            createUser(data:{uid:"${name}", password:"${password}", fullName:"${fullName}"})
         }`});
         console.log("res: ", await res.json());
         dispatch(submit());

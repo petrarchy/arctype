@@ -1,30 +1,29 @@
-import {LOGIN_USERNAME, LOGIN_PASSWORD, LOGIN_REMEMBER, LOGIN_SUBMIT} from "./types";
-import query from "./query";
+import {LOGIN} from "./types";
 
 export function setUsername(value) {
     return {
-        type: LOGIN_USERNAME,
+        type: LOGIN.USERNAME,
         value
     };
 }
 
 export function setPassword(value) {
     return {
-        type: LOGIN_PASSWORD,
+        type: LOGIN.PASSWORD,
         value
     };
 }
 
 export function toggleRemember(value) {
     return {
-        type: LOGIN_REMEMBER,
+        type: LOGIN.REMEMBER,
         value
     };
 }
 
 export function login() {
     return {
-        type: LOGIN_SUBMIT
+        type: LOGIN.SUBMIT
     };
 }
 
