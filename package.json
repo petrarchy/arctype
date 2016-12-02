@@ -18,7 +18,7 @@
   "precommit": [
     "lint"
   ],
-  "author": "",
+  "author": "petrarchy",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.5.3",
