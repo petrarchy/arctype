@@ -1,5 +1,5 @@
-import {REGISTER} from "./types";
-import query from "./query";
+import REGISTER from "./action_types";
+import query from "../util/query";
 
 export function setUsername(value) {
     return {

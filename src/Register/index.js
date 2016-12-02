@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from "react";
 import {themr} from "react-css-themr";
 import {connect} from "react-redux";
 
-import {setUsername, setPassword, setFullName, attemptRegister} from "../../actions/register";
+import {setUsername, setPassword, setFullName, attemptRegister} from "./actions";
 import style from "./style.scss";
 import constants from "../constants";
 

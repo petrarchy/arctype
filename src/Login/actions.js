@@ -1,5 +1,5 @@
-import {LOGIN} from "./types";
-import query from "./query";
+import LOGIN from "./action_types";
+import query from "../util/query";
 
 export function setUsername(value) {
     return {

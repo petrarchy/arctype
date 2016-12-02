@@ -3,7 +3,7 @@ import React, {Component, PropTypes} from "react";
 import {Provider} from "react-redux";
 import style from "./style.scss";
 
-import store from "../../reducers/store";
+import store from "./store";
 
 export default class App extends Component {
     static propTypes = {

@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import {REGISTER} from "../actions/types";
+import REGISTER from "./action_types";
 
 function usernameReducer(state = "", action){
     if (action.type === REGISTER.USERNAME){

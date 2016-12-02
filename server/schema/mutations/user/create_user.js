@@ -1,7 +1,7 @@
 import {GraphQLBoolean, GraphQLNonNull} from "graphql";
 import db from "../../../db";
 
-import CreateUserType from "../../types/createUser";
+import CreateUserType from "../../types/create_user";
 
 export default {
     type: GraphQLBoolean,

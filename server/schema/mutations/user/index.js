@@ -1,4 +1,4 @@
-import createUser from "./createUser";
+import createUser from "./create_user";
 
 export default {
     createUser
