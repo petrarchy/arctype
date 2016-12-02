@@ -1,22 +1,22 @@
-import {GraphQLBoolean, GraphQLNonNull} from "graphql";
-import db from "../../../db";
+import {GraphQLBoolean, GraphQLNonNull} from 'graphql';
+import db from '../../../db';
 
-import CreateUserType from "../../types/create_user";
+import CreateUserType from '../../types/create_user';
 
 export default {
     type: GraphQLBoolean,
     args: {
         data: {
-            name: "data",
+            name: 'data',
             type: new GraphQLNonNull(CreateUserType)
         }
     },
     async resolve (_, params) {
         try {
-            if (db.get("users").has(params.data.uid).value()) {
-                throw new Error("uid already taken");
+            if (db.get('users').has(params.data.uid).value()) {
+                throw new Error('uid already taken');
             }
-            db.get("users")
+            db.get('users')
                 .set(params.data.uid, params.data)
                 .value();
             return true;

@@ -1,7 +1,7 @@
-import lowdb from "lowdb";
-import fileAsync from "lowdb/lib/file-async";
+import lowdb from 'lowdb';
+import fileAsync from 'lowdb/lib/file-async';
 
-const db = lowdb("db.json", {
+const db = lowdb('db.json', {
     storage: fileAsync
 });
 

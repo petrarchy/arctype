@@ -1,14 +1,14 @@
-import {combineReducers} from "redux";
-import LOGIN from "./action_types";
+import {combineReducers} from 'redux';
+import LOGIN from './action_types';
 
-function usernameReducer(state = "", action){
+function usernameReducer(state = '', action){
     if (action.type === LOGIN.USERNAME){
         return action.value;
     }
     return state;
 }
 
-function passwordReducer(state = "", action){
+function passwordReducer(state = '', action){
     if (action.type === LOGIN.PASSWORD){
         return action.value;
     }

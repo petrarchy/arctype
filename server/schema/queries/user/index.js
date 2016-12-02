@@ -1,5 +1,5 @@
-import user from "./user";
-import users from "./users";
+import user from './user';
+import users from './users';
 
 export default {
     user,

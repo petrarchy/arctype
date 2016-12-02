@@ -1,5 +1,5 @@
-import LOGIN from "./action_types";
-import query from "../util/query";
+import LOGIN from './action_types';
+import query from '../util/query';
 
 export function setUsername(value) {
     return {
@@ -30,18 +30,18 @@ export function login() {
 
 export function attemptLogin(uid, password) {
     return async function (dispatch) {
-        const res = await fetch("/login", {
-            method: "POST",
+        const res = await fetch('/login', {
+            method: 'POST',
             headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
-            credentials: "same-origin",
+            credentials: 'same-origin',
             body: JSON.stringify({uid: uid, password: password})
         });
-        console.log("res: ", res);
-        const auth = await query({query: "{ auth }"});
-        console.log("auth test: ", auth);
+        console.log('res: ', res);
+        const auth = await query({query: '{ auth }'});
+        console.log('auth test: ', auth);
         dispatch(login());
     };
 }

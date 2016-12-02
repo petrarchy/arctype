@@ -1,21 +1,21 @@
-import {combineReducers} from "redux";
-import REGISTER from "./action_types";
+import {combineReducers} from 'redux';
+import REGISTER from './action_types';
 
-function usernameReducer(state = "", action){
+function usernameReducer(state = '', action){
     if (action.type === REGISTER.USERNAME){
         return action.value;
     }
     return state;
 }
 
-function passwordReducer(state = "", action){
+function passwordReducer(state = '', action){
     if (action.type === REGISTER.PASSWORD){
         return action.value;
     }
     return state;
 }
 
-function fullNameReducer(state = "", action){
+function fullNameReducer(state = '', action){
     if (action.type === REGISTER.FULLNAME){
         return action.value;
     }

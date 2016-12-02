@@ -1,7 +1,7 @@
-import {GraphQLObjectType, GraphQLNonNull, GraphQLString} from "graphql";
+import {GraphQLObjectType, GraphQLNonNull, GraphQLString} from 'graphql';
 
 export default new GraphQLObjectType({
-    name: "User",
+    name: 'User',
     fields: {
         uid: {type: new GraphQLNonNull(GraphQLString)},
         fullName: {type: GraphQLString},

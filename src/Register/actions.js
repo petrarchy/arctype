@@ -1,5 +1,5 @@
-import REGISTER from "./action_types";
-import query from "../util/query";
+import REGISTER from './action_types';
+import query from '../util/query';
 
 export function setUsername(value) {
     return {
@@ -31,9 +31,9 @@ export function submit() {
 export function attemptRegister(name, password, fullName) {
     return async function (dispatch) {
         const res = await query({query: `mutation {
-            createUser(data:{uid:"${name}", password:"${password}", fullName:"${fullName}"})
+            createUser(data:{uid:'${name}', password:'${password}', fullName:'${fullName}'})
         }`});
-        console.log("res: ", await res.json());
+        console.log('res: ', await res.json());
         dispatch(submit());
     };
 }
