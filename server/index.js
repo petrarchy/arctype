@@ -16,7 +16,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 const app = express();
 
 // TODO: Provide as optional argument?
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const compiler = webpack(require('../webpack.config.development.js'));
 
