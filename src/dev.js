@@ -9,7 +9,7 @@ import App from './App';
 import Login from './Login';
 import Register from './Register';
 
-if (document.getElementById('root') == null){
+if (document.getElementById('root') === null){
     document.write('<div id="root"></div>');
 }
 

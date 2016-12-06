@@ -47,7 +47,7 @@ app.post('/login', function (req, res) {
     console.log('initial session: ', req.session);
     const {uid, password} = req.body;
     const user = db.get('users').get(uid).value();
-    if (!user || user.password != password) {
+    if (!user || user.password !== password) {
         return res.send('login failed');
     }
     req.session.user = user;
