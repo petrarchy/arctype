@@ -7,7 +7,7 @@ import store from './store';
 
 export default class App extends Component {
     static propTypes = {
-        children: PropTypes.element
+        children: PropTypes.node
     }
 
     render() {

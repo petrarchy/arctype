@@ -7,7 +7,7 @@ export default {
     type: UserType,
     args: {
         uid: {
-            name: 'uid',
+            uid: 'uid',
             type: new GraphQLNonNull(GraphQLString)
         }
     },

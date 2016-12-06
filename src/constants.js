@@ -3,10 +3,10 @@
 
 export default {
     // Localization
-    USERNAME: 'User name',
+    USERNAME: 'Username',
     PASSWORD: 'Password',
     REMEMBER: 'Remember',
-    SUBMIT: 'Submit',
+    SUBMIT:   'Submit',
     FULLNAME: 'Full name',
     REGISTER: 'Register'
 };

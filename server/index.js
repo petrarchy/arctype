@@ -15,6 +15,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 
 const app = express();
 
+// TODO: Provide as optional argument?
 const PORT = 3000;
 
 const compiler = webpack(require('../webpack.config.development.js'));
@@ -35,12 +36,9 @@ app.use(session({
 }));
 
 // GraphQL endpoint
-app.use('/graphql', graphqlHTTP((req) => {
-    return {
-        schema: schema,
-        rootValue: req,
-        graphiql: true
-    };
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: true
 }));
 
 // Login endpoint. This authenticates the session. We could instead do
@@ -57,16 +55,6 @@ app.post('/login', function (req, res) {
     console.log('new session: ', req.session);
     console.log('user authenticated: ', user);
     res.send('login successful');
-});
-
-// Test authentication
-app.get('/auth', function (req, res) {
-    console.log('session: ', req.session);
-    if(req.session.authenticated){
-        res.send('authenticated.');
-    } else {
-        res.send('not authenticated');
-    }
 });
 
 const server = app.listen(PORT, () => { console.log(`Demo server listening on port ${server.address().port}`); });

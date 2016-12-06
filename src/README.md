@@ -1,6 +1,6 @@
 # Component library
 
-Source files are bundled using Webpack and exported in `../lib`. Included components are defined here.
+Source files are bundled using Webpack and exported in `/lib`. Included components are defined here.
 
 Components use `react-css-themr` to allow external theming - simply import a css module and pass it into a component via its `theme` prop.
 

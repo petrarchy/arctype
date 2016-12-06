@@ -1,14 +1,14 @@
 import {GraphQLBoolean, GraphQLNonNull} from 'graphql';
 import db from '../../../db';
 
-import CreateUserType from '../../types/create_user';
+import UserInputType from '../../types/user_input';
 
 export default {
     type: GraphQLBoolean,
     args: {
         data: {
             name: 'data',
-            type: new GraphQLNonNull(CreateUserType)
+            type: new GraphQLNonNull(UserInputType)
         }
     },
     async resolve (_, params) {
