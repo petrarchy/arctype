@@ -19,6 +19,7 @@
     "lint"
   ],
   "bugs": "https://github.com/petrarchy/arctype/issues",
+  "repository": "https://github.com/petrarchy/arctype.git",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.5.3",
