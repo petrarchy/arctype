@@ -1,11 +1,19 @@
+// Endpoint for testing only.
 
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import 'babel-core/register';
+import 'babel-polyfill';
 
-document.write("<div id='root'></div>");
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import Login from './Login';
+import Register from './Register';
+
+if (document.getElementById('root') === null){
+    document.write('<div id="root"></div>');
+}
 
 ReactDOM.render(
-    <App />,
-    document.getElementById("root")
+    <App><Login /><br/><Register /></App>,
+    document.getElementById('root')
 );

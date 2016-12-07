@@ -1,13 +1,23 @@
 
-import React, {Component} from "react";
-import style from "./style.scss";
+import React, {Component, PropTypes} from 'react';
+import {Provider} from 'react-redux';
+import style from './style.scss';
+
+import store from './store';
 
 export default class App extends Component {
+    static propTypes = {
+        children: PropTypes.node
+    }
+
     render() {
+        const {children} = this.props;
         return (
-            <div className={style.app}>
-                <p>Test text</p>
-            </div>
+            <Provider store={store}>
+                <div className={style.container}>
+                    {children}
+                </div>
+            </Provider>
         );
     }
 }

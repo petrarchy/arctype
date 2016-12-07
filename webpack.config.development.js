@@ -1,20 +1,20 @@
 
-const package = require("./package");
-const webpack = require("webpack");
-const path = require("path");
-const autoprefixer = require("autoprefixer");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const pkg = require('./package');
+const webpack = require('webpack');
+const path = require('path');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: "./src/dev.js",
-    devtool: "inline-source-map",
+    entry: ['./src/dev.js', 'webpack-hot-middleware/client'],
+    devtool: 'inline-source-map',
     output: {
-        path: path.join(__dirname, "/build"),
-        filename: "dev.js"
+        path: path.join(__dirname, '/build'),
+        filename: 'dev.js'
     },
     resolve: {
-        extensions: ["", ".scss", ".jsx", ".js"]
+        extensions: ['', '.scss', '.jsx', '.js']
     },
     postcss: [autoprefixer],
     module: {
@@ -22,23 +22,26 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                loader: "babel"
+                loaders: ['react-hot', 'babel']
             },
             {
                 test: /\.(scss|css)$/,
-                loader: ExtractTextPlugin.extract("css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap")
+                loader: ExtractTextPlugin.extract('css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap')
             }
         ]
     },
     plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
         new HtmlWebpackPlugin({
-            title: "App",
-            filename: "index.html"
+            title: 'App',
+            filename: 'index.html'
         }),
-        new ExtractTextPlugin("bundle.css", {allChunks: true}),
+        new ExtractTextPlugin('bundle.css', {allChunks: true}),
         new webpack.DefinePlugin({
-            "process.env.NODE_ENV": JSON.stringify("development"),
-            VERSION: JSON.stringify(package.version)
+            'process.env.NODE_ENV': JSON.stringify('development'),
+            VERSION: JSON.stringify(pkg.version)
         })
     ]
-}
+};
