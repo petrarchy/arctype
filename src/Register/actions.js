@@ -1,4 +1,4 @@
-import REGISTER from './action_types';
+import * as REGISTER from './action_types';
 import query from '../util/query';
 
 export function setUsername(value) {

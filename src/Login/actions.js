@@ -1,4 +1,4 @@
-import LOGIN from './action_types';
+import * as LOGIN from './action_types';
 import query from '../util/query';
 
 export function setUsername(value) {
@@ -41,7 +41,8 @@ export function attemptLogin(uid, password) {
         });
         console.log('res: ', res);
         const auth = await query({query: '{ auth }'});
-        console.log('auth test: ', auth);
+        console.log('auth test: ', await auth.json());
+        window.location = '/main';
         dispatch(login());
     };
 }

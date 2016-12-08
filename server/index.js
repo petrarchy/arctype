@@ -1,4 +1,4 @@
-// const express = require('express');
+import path from 'path';
 import express from 'express';
 import session from 'express-session';
 import morgan from 'morgan';
@@ -40,6 +40,10 @@ app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true
 }));
+
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 // Login endpoint. This authenticates the session. We could instead do
 // this using GraphQL.

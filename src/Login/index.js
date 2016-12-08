@@ -22,19 +22,22 @@ class Login extends Component {
         const {theme, username, password, remember, onUsernameChange, onPasswordChange, onRememberToggle, onLogin} = this.props;
         return (
             <div className={theme.container}>
-                <div className={theme.property}>
-                    <label className={theme.propertyLabel} htmlFor='uname'>{constants.USERNAME}</label>
-                    <input type='text' id='uname' placeholder={constants.USERNAME} required={true} value={username} onChange={(e) => { onUsernameChange(e.target.value); }}/>
-                    <input type='checkbox' id='remember' required={true} value={remember} onChange={(e) => { onRememberToggle(e.target.checked); }}/>
-                    <label className={theme.propertyLabel} htmlFor='remember'>{constants.REMEMBER}</label>
-                </div>
-                <div className={theme.property}>
-                    <label className={theme.propertyLabel} htmlFor='pword'>{constants.PASSWORD}</label>
-                    <input type='password' id='pword' placeholder={constants.PASSWORD} required={true} value={password} onChange={(e) => { onPasswordChange(e.target.value); }} />
-                </div>
-                <div className={theme.login}>
-                    <button type='submit' onClick={() => { onLogin(username, password); }}>{constants.SUBMIT}</button>
-                </div>
+                <fieldset>
+                    <legend>{constants.LOGIN}</legend>
+                    <div className={theme.property}>
+                        <label className={theme.propertyLabel} htmlFor='uname'>{constants.USERNAME}</label>
+                        <input type='text' id='uname' placeholder={constants.USERNAME} required={true} value={username} onChange={(e) => { onUsernameChange(e.target.value); }}/>
+                        <input type='checkbox' id='remember' required={true} value={remember} onChange={(e) => { onRememberToggle(e.target.checked); }}/>
+                        <label className={theme.propertyLabel} htmlFor='remember'>{constants.REMEMBER}</label>
+                    </div>
+                    <div className={theme.property}>
+                        <label className={theme.propertyLabel} htmlFor='pword'>{constants.PASSWORD}</label>
+                        <input type='password' id='pword' placeholder={constants.PASSWORD} required={true} value={password} onChange={(e) => { onPasswordChange(e.target.value); }} />
+                    </div>
+                    <div className={theme.login}>
+                        <button type='submit' onClick={() => { onLogin(username, password); }}>{constants.SUBMIT}</button>
+                    </div>
+                </fieldset>
             </div>
         );
     }
