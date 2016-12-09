@@ -11,7 +11,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, '/lib'),
         libraryTarget: 'umd',
-        library: 'petra',
+        library: 'arctype',
         filename: 'index.js'
     },
     resolve: {
