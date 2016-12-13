@@ -30,7 +30,7 @@ app.use(morgan('dev'));
 
 app.use(session({
     secret: 'secretkey',
-    cookie: {maxAge: 10 * 60 * 1000},
+    cookie: { maxAge: 10 * 60 * 1000 },
     resave: false,
     saveUninitalized: false,
 }));
@@ -45,8 +45,9 @@ app.use('/graphql', graphqlHTTP({
 // this using GraphQL.
 app.post('/login', (req, res) => {
     console.log('initial session: ', req.session);
-    const {uid, password} = req.body;
-    const user = db.get('users').get(uid).value();
+    const {username, password} = req.body;
+    console.log('username', username);
+    const user = db.get('users').get(username).value();
     if (!user || user.password !== password) {
         return res.send('login failed');
     }

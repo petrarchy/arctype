@@ -3,11 +3,19 @@
 
 export default {
     // Localization
-    LOGIN:    'Login',
-    USERNAME: 'Username',
-    PASSWORD: 'Password',
-    REMEMBER: 'Remember',
-    SUBMIT:   'Submit',
-    FULLNAME: 'Full name',
-    REGISTER: 'Register'
+    LOGIN:              'login',
+    REGISTER:           'register',
+    PASSWORD_RESET:     'reset password',
+    USERNAME:           'username',
+    USERID:             'user ID',
+    PASSWORD:           'password',
+    REMEMBER:           'remember',
+    FORGOT:             'forgot',
+    SHOW:               'show',
+    LOGIN_SUBMIT:       'login',
+    CANCEL:             'cancel',
+    RESET:              'reset',
+    FULLNAME:           'full name',
+    HELP:               'help',
+    LOGIN_INSTRUCTIONS: 'enter your {USERNAME} and {PASSWORD}'
 };

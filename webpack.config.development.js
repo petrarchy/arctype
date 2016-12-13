@@ -30,6 +30,9 @@ module.exports = {
             }
         ]
     },
+    sassLoader: {
+        includePaths: [path.resolve(__dirname, './node_modules')]
+    },
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),

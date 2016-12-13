@@ -1,18 +1,148 @@
-.propertyLabel {
-    display: none;
-    text-transform: capitalize;
+.container {
+    width: 100%;
+    background-color: white;
+    position: relative; /* required for .help placement */
+    margin-bottom: 2rem;
 }
 
-@media screen and (min-width: 640px) {
-    .propertyLabel {
-        display: inline-block;
+.help {
+    position: absolute;
+    right: 0.25rem;
+    top: 0.25rem;
+
+    &::first-letter {
+        text-transform: capitalize;
     }
 }
 
-.property {
-    margin: 3rem 0;
+legend ul {
+    margin: 0;
+    padding: 0;
 }
 
-.login {
+.tab {
+    display: inline-block;
+    margin: 0;
+
+    & + & {
+        padding-left: 1.5rem;
+        color: #ccc;
+    }
+
+    &::first-letter {
+        text-transform: capitalize;
+    }
+}
+
+.property:first-child label {
+    display: none;
+}
+
+.property { margin: 2rem 0; }
+
+button + button {
+    margin-left: 0.5rem;
+}
+
+.instruction {
+    margin: 0;
+    font-size: 0.8125rem;
+
+    &::first-letter {
+        text-transform: capitalize;
+    }
+
+    &::after {
+        content: '.';
+    }
+}
+
+.invalid,
+.error {
+    position: absolute;
+    display: none;
+    margin-top: 0;
+}
+
+.invalid { color: orange; }
+
+.error { color: red; }
+
+.action {
     width: 100%;
+    text-align: right;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+}
+
+.action button {
+    flex: 0 0 auto;
+}
+
+.action button + button {
+    margin-left: 0.5rem;
+}
+
+.propset {
+    height: 45px;
+    padding-top: 4px;
+    text-align: center;
+}
+
+.propset.small {
+    height: 37px;
+    padding-top: 5px;
+}
+
+.propset.large {
+    height: 64px;
+    padding-top: 9px;
+}
+
+label {
+    text-align: right;
+    margin-right: 0.25rem;
+    min-width: 8rem;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: baseline;
+}
+
+input {
+    font-family: 'Source Sans Pro';
+    margin-left: 0.25rem;
+    vertical-align: baseline;
+}
+
+input[type='text'],
+input[type='search'],
+input[type='password'] {
+    height: 32px;
+    width: 12rem;
+}
+
+.small input[type]:not[radio],
+.small input[type]:not[checkbox],
+.small label {
+    height: 26px;
+    font-size: 0.8125rem;
+}
+
+.large input[type='text'],
+.large input[type='search'],
+.large input[type='password'],
+.large label {
+    height: 37px;
+    font-size: 1.125rem;
+}
+
+@media screen and (min-height: 480px) {
+    /* this is a thing */
+}
+
+@media screen and (min-width: 960px) {
+    .property:first-child label {
+        display: inline-block;
+    }
 }

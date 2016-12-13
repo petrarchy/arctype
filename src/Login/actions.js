@@ -23,17 +23,29 @@ export function toggleRemember(value) {
     };
 }
 
+export function toggleShow(value) {
+    return {
+        type: LOGIN.SHOW,
+        value
+    };
+}
+
 export function login() {
     return {
         type: LOGIN.SUBMIT
     };
 }
 
-export function attemptLogin(uid, password) {
+export function attemptLogin(username, password, remember) {
     return async function (dispatch) {
-        const valid = await auth.login(uid, password);
+        const valid = await auth.login(username, password);
         if(valid)
             browserHistory.push('/main');
+        if (remember) {
+            localStorage.setItem('username', username);
+        } else {
+            localStorage.removeItem('username');
+        }
         dispatch(login());
     };
 }
