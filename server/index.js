@@ -41,8 +41,9 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }));
 
+// React router takes care of routing, so all endpoints should arrive on the same 'page'.
 app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, '../build/index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Login endpoint. This authenticates the session. We could instead do
