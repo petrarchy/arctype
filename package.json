@@ -1,7 +1,7 @@
 {
-  "name": "petra",
+  "name": "arctype",
   "version": "0.0.0",
-  "description": "",
+  "description": "A reference implementation framework for enterprise administration applications.",
   "main": "lib/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
@@ -19,6 +19,11 @@
     "test": "mocha --compilers js:./test/jsdom_setup.js,js:babel-core/register,js:babel-polyfill,js:./test/sass_compiler.js --recursive"
   },
   "author": "petrarchy",
+  "precommit": [
+    "lint"
+  ],
+  "bugs": "https://github.com/petrarchy/arctype/issues",
+  "repository": "https://github.com/petrarchy/arctype.git",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.5.3",
