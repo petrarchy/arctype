@@ -42,13 +42,13 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 // React router takes care of routing, so all endpoints should arrive on the same 'page'.
-app.get('*', function (req, res) {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Login endpoint. This authenticates the session. We could instead do
 // this using GraphQL.
-app.post('/login', function (req, res) {
+app.post('/login', (req, res) => {
     console.log('initial session: ', req.session);
     const {uid, password} = req.body;
     const user = db.get('users').get(uid).value();
@@ -60,6 +60,11 @@ app.post('/login', function (req, res) {
     console.log('new session: ', req.session);
     console.log('user authenticated: ', user);
     res.send('login successful');
+});
+
+app.post('/logout', async (req, res) => {
+    await req.session.destroy();
+    res.redirect('/login');
 });
 
 const server = app.listen(PORT, () => { console.log(`Demo server listening on port ${server.address().port}`); });

@@ -40,9 +40,10 @@ export function attemptLogin(uid, password) {
             body: JSON.stringify({uid: uid, password: password})
         });
         console.log('res: ', res);
-        const auth = await query({query: '{ auth }'});
-        console.log('auth test: ', await auth.json());
-        window.location = '/main';
+        const data = await query({query: '{ auth }'});
+        console.log('auth test: ', data.auth);
+        if(data.auth)
+            window.location = '/main';
         dispatch(login());
     };
 }

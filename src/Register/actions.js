@@ -30,7 +30,7 @@ export function submit() {
 
 export function attemptRegister(name, password, fullName) {
     return async function (dispatch) {
-        const res = await query({
+        const data = await query({
             query: `mutation CreateUserFromData($uid: String!, $password: String!, $fullName: String) {
                 createUser(data:{uid: $uid, password: $password, fullName: $fullName})
             }`,
@@ -40,7 +40,7 @@ export function attemptRegister(name, password, fullName) {
                 fullName: fullName
             }
         });
-        console.log('res: ', await res.json());
+        console.log('res: ', data);
         dispatch(submit());
     };
 }

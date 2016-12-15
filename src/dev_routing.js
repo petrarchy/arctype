@@ -25,17 +25,29 @@ function RegisterPage () {
     );
 }
 
+const logout = async () => {
+    await fetch('/logout', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        credentials: 'same-origin'
+    });
+    window.location = '/login';
+};
+
 function MainPage () {
     return (
         <div>
-            Logged in!
+            <div>Logged in!</div>
+            <button onClick={logout}>Logout</button>
         </div>
     );
 }
 
 async function requireAuth (nextState, replace, next) {
-    const res = await query({query: '{ auth }'});
-    const {data} = await res.json();
+    const data = await query({query: '{ auth }'});
     console.log('checking auth: ', data);
     if (data.auth) {
         console.log('auth success');
