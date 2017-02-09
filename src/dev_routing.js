@@ -26,14 +26,7 @@ function RegisterPage () {
 }
 
 const logout = async () => {
-    await fetch('/logout', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        credentials: 'same-origin'
-    });
+    await fetch('/logout');
     window.location = '/login';
 };
 

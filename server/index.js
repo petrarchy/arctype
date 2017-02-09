@@ -62,7 +62,7 @@ app.post('/login', (req, res) => {
     res.send('login successful');
 });
 
-app.post('/logout', async (req, res) => {
+app.get('/logout', async (req, res) => {
     await req.session.destroy();
     res.redirect('/login');
 });

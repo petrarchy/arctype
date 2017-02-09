@@ -30,7 +30,7 @@ export function login() {
 
 export function attemptLogin(uid, password) {
     return async function (dispatch) {
-        const res = await fetch('/login', {
+        await fetch('/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -39,9 +39,7 @@ export function attemptLogin(uid, password) {
             credentials: 'same-origin',
             body: JSON.stringify({uid: uid, password: password})
         });
-        console.log('res: ', res);
         const data = await query({query: '{ auth }'});
-        console.log('auth test: ', data.auth);
         if(data.auth)
             window.location = '/main';
         dispatch(login());
