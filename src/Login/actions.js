@@ -1,5 +1,6 @@
 import * as LOGIN from './action_types';
-import query from '../util/query';
+import {browserHistory} from 'react-router';
+import * as auth from '../util/auth';
 
 export function setUsername(value) {
     return {
@@ -28,20 +29,11 @@ export function login() {
     };
 }
 
-export function attemptLogin(uid, password) {
+export function attemptLogin(router, uid, password) {
     return async function (dispatch) {
-        await fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin',
-            body: JSON.stringify({uid: uid, password: password})
-        });
-        const data = await query({query: '{ auth }'});
-        if(data.auth)
-            window.location = '/main';
+        const valid = await auth.login(uid, password);
+        if(valid)
+            browserHistory.push('/main');
         dispatch(login());
     };
 }

@@ -5,59 +5,41 @@ import App from './App';
 import Login from './Login';
 import Register from './Register';
 
-import query from './util/query';
+import * as auth from './util/auth';
 
-function LoginPage () {
-    return (
-        <div>
-            <Link to="/register">Register</Link>
-            <Login />
-        </div>
-    );
-}
-
-function RegisterPage () {
+function Navigation () {
     return (
         <div>
             <Link to="/login">Login</Link>
-            <Register />
+            <Link to="/register">Register</Link>
         </div>
     );
 }
-
-const logout = async () => {
-    await fetch('/logout');
-    window.location = '/login';
-};
 
 function MainPage () {
     return (
         <div>
             <div>Logged in!</div>
-            <button onClick={logout}>Logout</button>
+            <button onClick={auth.logout}>Logout</button>
         </div>
     );
 }
 
-async function requireAuth (nextState, replace, next) {
-    const data = await query({query: '{ auth }'});
-    console.log('checking auth: ', data);
-    if (data.auth) {
-        console.log('auth success');
-        next();
-    } else {
-        console.log('auth failed');
-        replace('/login');
-        next();
+async function requireAuth (nextState, replace) {
+    if (!auth.loggedIn()) {
+        replace({
+            pathname: '/login',
+            state: { nextPathname: nextState.location.pathname }
+        });
     }
 }
 
 const routes = (
     <Route path="/" component={App}>
         <IndexRedirect to="/login" />
-        <Route path="login" component={LoginPage} />
+        <Route path="login" component={Login} />
         <Route path="main" component={MainPage} onEnter={requireAuth}/>
-        <Route path="register" component={RegisterPage} />
+        <Route path="register" component={Register} />
     </Route>
 );
 
