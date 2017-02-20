@@ -1,20 +1,12 @@
-import {Router, Route, IndexRedirect, Link, browserHistory} from 'react-router';
+import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
 
 import React from 'react';
 import App from './App';
+import Navigation from './Navigation';
 import Login from './Login';
 import Register from './Register';
 
 import * as auth from './util/auth';
-
-function Navigation () {
-    return (
-        <div>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
-        </div>
-    );
-}
 
 function MainPage () {
     return (
@@ -36,10 +28,12 @@ async function requireAuth (nextState, replace) {
 
 const routes = (
     <Route path="/" component={App}>
-        <IndexRedirect to="/login" />
-        <Route path="login" component={Login} />
-        <Route path="main" component={MainPage} onEnter={requireAuth}/>
-        <Route path="register" component={Register} />
+        <Route path="" component={Navigation}>
+            <IndexRedirect to="/login" />
+            <Route path="login" component={Login} />
+            <Route path="main" component={MainPage} onEnter={requireAuth}/>
+            <Route path="register" component={Register} />
+        </Route>
     </Route>
 );
 

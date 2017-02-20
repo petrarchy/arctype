@@ -29,7 +29,7 @@ export function login() {
     };
 }
 
-export function attemptLogin(router, uid, password) {
+export function attemptLogin(uid, password) {
     return async function (dispatch) {
         const valid = await auth.login(uid, password);
         if(valid)
