@@ -8,7 +8,7 @@ import constants from '../constants';
 
 class Login extends Component {
     static propTypes = {
-        theme: PropTypes.object,
+        theme: PropTypes.object.isRequired,
         username: PropTypes.string,
         password: PropTypes.string,
         remember: PropTypes.bool,
@@ -56,4 +56,5 @@ const ReduxLogin = connect((state) => {
     };
 })(Login);
 
+export {Login as LoginBase};
 export default themr('LOGIN', style)(ReduxLogin);

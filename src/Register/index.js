@@ -60,4 +60,5 @@ const ReduxRegister = connect((state) => {
     };
 })(Register);
 
+export {Register as RegisterBase};
 export default themr('REGISTER', style)(ReduxRegister);

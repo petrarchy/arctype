@@ -14,5 +14,6 @@ Source files go in /src, temporary development files go in /build, final product
 ## Build scripts:
 
 - `npm run build` - Compiles src code into a distributable bundle in /lib.
-- `npm run start` - Starts up development server on localhost:3000
-- `npm run lint`  - Lints all scss and js files
+- `npm run start` - Starts up development server on localhost:3000.
+- `npm run lint`  - Lints all scss and js files.
+- `npm run test`  - Runs all tests in /test.
