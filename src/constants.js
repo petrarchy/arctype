@@ -3,6 +3,7 @@
 
 export default {
     // Localization
+    LOGIN:    'Login',
     USERNAME: 'Username',
     PASSWORD: 'Password',
     REMEMBER: 'Remember',

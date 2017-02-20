@@ -1,6 +1,4 @@
-export default {
-    USERNAME: 'LOGIN_USERNAME',
-    PASSWORD: 'LOGIN_PASSWORD',
-    REMEMBER: 'LOGIN_REMEMBER',
-    SUBMIT:   'LOGIN_SUBMIT'
-};
+export const USERNAME = 'LOGIN_USERNAME';
+export const PASSWORD = 'LOGIN_PASSWORD';
+export const REMEMBER = 'LOGIN_REMEMBER';
+export const SUBMIT   = 'LOGIN_SUBMIT';
