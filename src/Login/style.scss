@@ -9,10 +9,6 @@
     position: absolute;
     right: 0.25rem;
     top: 0.25rem;
-
-    &::first-letter {
-        text-transform: capitalize;
-    }
 }
 
 legend ul {
@@ -27,10 +23,6 @@ legend ul {
     & + & {
         padding-left: 1.5rem;
         color: #ccc;
-    }
-
-    &::first-letter {
-        text-transform: capitalize;
     }
 }
 
@@ -47,10 +39,6 @@ button + button {
 .instruction {
     margin: 0;
     font-size: 0.8125rem;
-
-    &::first-letter {
-        text-transform: capitalize;
-    }
 
     &::after {
         content: '.';
@@ -101,25 +89,32 @@ button + button {
 }
 
 label {
-    text-align: right;
     margin-right: 0.25rem;
-    min-width: 8rem;
+    margin-left: 0.25rem;
+    width: 20%;
     display: inline-block;
     cursor: pointer;
     vertical-align: baseline;
 }
 
+label:first-of-type {
+    text-align: right;
+}
+
 input {
     font-family: 'Source Sans Pro';
     margin-left: 0.25rem;
-    vertical-align: baseline;
 }
 
-input[type='text'],
-input[type='search'],
-input[type='password'] {
-    height: 32px;
-    width: 12rem;
+input[type='checkbox'],
+input[type='radio'] {
+    position: relative;
+    top: -1px;
+}
+
+input + input[type='checkbox'],
+input + input[type='radio'] {
+    margin-left: 1rem;
 }
 
 .small input[type]:not[radio],

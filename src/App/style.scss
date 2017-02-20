@@ -38,18 +38,21 @@ fieldset {
 legend {
     font-size: 2rem;
     padding-top: 1rem;
+}
 
+legend,
+label,
+button,
+input {
     &::first-letter {
         text-transform: capitalize;
     }
 }
 
-legend,
-label,
-button {
-    &::first-letter {
-        text-transform: capitalize;
-    }
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder {
+    text-transform: capitalize;
 }
 
 input,
@@ -69,16 +72,12 @@ input[type='url'],
 input[type='reset'],
 input[type='submit'],
 button {
-    padding: 0 3px;
+    padding: 0 3px 1px;
     height: 37px;
 }
 
 input + label {
     margin-right: 0.25rem;
-}
-
-label + input {
-    margin-left: 0.5rem;
 }
 
 button {
