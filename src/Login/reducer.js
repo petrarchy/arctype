@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import LOGIN from './action_types';
+import * as LOGIN from './action_types';
 
 function usernameReducer(state = '', action){
     if (action.type === LOGIN.USERNAME){

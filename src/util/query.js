@@ -1,5 +1,5 @@
 export default async function(q){
-    return await fetch('/graphql', {
+    const res = await fetch('/graphql', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -8,4 +8,6 @@ export default async function(q){
         credentials: 'same-origin',
         body: JSON.stringify(q)
     });
+    const json = await res.json();
+    return json.data;
 }
