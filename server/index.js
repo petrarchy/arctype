@@ -32,7 +32,7 @@ app.use(session({
     secret: 'secretkey',
     cookie: {maxAge: 10 * 60 * 1000},
     resave: false,
-    saveUninitalized: false,
+    saveUninitialized: false
 }));
 
 // GraphQL endpoint
@@ -57,4 +57,6 @@ app.post('/login', function (req, res) {
     res.send('login successful');
 });
 
-const server = app.listen(PORT, () => { console.log(`Demo server listening on port ${server.address().port}`); });
+const server = app.listen(PORT, () => {
+    console.log(`Demo server listening on port ${server.address().port}`);
+});

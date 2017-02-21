@@ -16,7 +16,8 @@
     "server": "cross-env NODE_ENV=development babel-node server/index",
     "start": "npm run server",
     "test:watch": "mocha --reporter=min --compilers js:./test/jsdom_setup.js,js:babel-core/register,js:babel-polyfill,js:./test/sass_compiler.js --recursive -w",
-    "test": "mocha --compilers js:./test/jsdom_setup.js,js:babel-core/register,js:babel-polyfill,js:./test/sass_compiler.js --recursive"
+    "test": "mocha --compilers js:./test/jsdom_setup.js,js:babel-core/register,js:babel-polyfill,js:./test/sass_compiler.js --recursive",
+    "validate": "npm ls"
   },
   "author": "petrarchy",
   "precommit": [
@@ -47,7 +48,7 @@
     "eslint-plugin-react": "^6.7.1",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
-    "express-session": "^1.14.2",
+    "express-session": "^1.15.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "graphql": "^0.8.2",
     "html-webpack-plugin": "^2.24.1",
@@ -58,6 +59,7 @@
     "morgan": "^1.7.0",
     "node-sass": "^3.12.4",
     "postcss-loader": "^1.1.1",
+    "precommit-hook": "^3.0.0",
     "react": "^15.4.0",
     "react-addons-test-utils": "^15.4.1",
     "react-css-themr": "^1.6.0",
@@ -74,5 +76,10 @@
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.2"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
 }
