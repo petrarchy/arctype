@@ -5,6 +5,8 @@ const userExists = (localStorage.getItem('username') !== null ? localStorage.get
 function usernameReducer(state = userExists, action){
     if (action.type === LOGIN.USERNAME){
         return action.value;
+    } else if (action.type === LOGIN.SUBMIT){
+        return (localStorage.getItem('username') !== null ? state : null);
     }
     return state;
 }
@@ -12,6 +14,8 @@ function usernameReducer(state = userExists, action){
 function passwordReducer(state = '', action){
     if (action.type === LOGIN.PASSWORD){
         return action.value;
+    } else if (action.type === LOGIN.SUBMIT){
+        return null;
     }
     return state;
 }
