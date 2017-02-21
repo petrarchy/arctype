@@ -30,7 +30,7 @@ app.use(morgan('dev'));
 
 app.use(session({
     secret: 'secretkey',
-    cookie: { maxAge: 10 * 60 * 1000 },
+    cookie: { maxAge: 10 * 60 * 1000, httpOnly: true},
     resave: false,
     saveUninitalized: false,
 }));
@@ -44,18 +44,14 @@ app.use('/graphql', graphqlHTTP({
 // Login endpoint. This authenticates the session. We could instead do
 // this using GraphQL.
 app.post('/login', (req, res) => {
-    console.log('initial session: ', req.session);
     const {username, password} = req.body;
-    console.log('username', username);
     const user = db.get('users').get(username).value();
     if (!user || user.password !== password) {
-        return res.send('login failed');
+        return res.status(403).send({status: 'login failed'});
     }
     req.session.user = user;
     req.session.authenticated = true;
-    console.log('new session: ', req.session);
-    console.log('user authenticated: ', user);
-    res.send('login successful');
+    res.json({status: 'login successful'});
 });
 
 app.get('/logout', async (req, res) => {

@@ -19,7 +19,7 @@ describe('<Login />', () => {
 
     it('should include checkbox input', () => {
         const wrapper = shallow(<LoginBase theme={theme}/>);
-        expect(wrapper.find('input[type="checkbox"]')).to.have.length(1);
+        expect(wrapper.find('input[type="checkbox"]')).to.have.length(2);
     });
 
     it('should include submit button', () => {
@@ -29,7 +29,7 @@ describe('<Login />', () => {
 
     it('should include labels', () => {
         const wrapper = shallow(<LoginBase theme={theme}/>);
-        expect(wrapper.find('label')).to.have.length(3);
+        expect(wrapper.find('label')).to.have.length(4);
     });
 
 });

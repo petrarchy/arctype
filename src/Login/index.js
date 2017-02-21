@@ -20,8 +20,20 @@ class Login extends Component {
         onLogin: PropTypes.func
     }
 
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const {username, password, remember, onLogin} = this.props;
+        onLogin(username, password, remember);
+    }
+
     render() {
-        const {theme, username, password, remember, show, onUsernameChange, onPasswordChange, onRememberToggle, onShowToggle, onLogin} = this.props;
+        const {theme, username, password, remember, show, onUsernameChange, onPasswordChange, onRememberToggle, onShowToggle} = this.props;
         let showtype = show ? 'text' : 'password';
         return (
             <form>
@@ -43,7 +55,7 @@ class Login extends Component {
                 </div>
                 <div className={theme.action}>
                     <p className={theme.error}>{constants.LOGIN_FAILED}</p>
-                    <button type='submit' onClick={() => { onLogin(username, password, remember); }}>{constants.LOGIN_SUBMIT}</button>
+                    <button type='submit' onClick={this.handleClick}>{constants.LOGIN_SUBMIT}</button>
                 </div>
             </fieldset>
             </form>
