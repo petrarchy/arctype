@@ -17,8 +17,7 @@
     "server": "cross-env NODE_ENV=development babel-node server/index",
     "start": "npm run server",
     "test:watch": "mocha --reporter=min --compilers js:./test/jsdom_setup.js,js:babel-core/register,js:babel-polyfill,js:./test/sass_compiler.js --recursive -w",
-    "test": "mocha --compilers js:./test/jsdom_setup.js,js:babel-core/register,js:babel-polyfill,js:./test/sass_compiler.js --recursive",
-    "validate": "npm ls"
+    "test": "mocha --compilers js:./test/jsdom_setup.js,js:babel-core/register,js:babel-polyfill,js:./test/sass_compiler.js --recursive"
   },
   "author": "petrarchy",
   "precommit": [
