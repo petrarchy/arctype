@@ -60,7 +60,6 @@
     "morgan": "^1.7.0",
     "node-sass": "^3.12.4",
     "postcss-loader": "^1.1.1",
-    "precommit-hook": "^3.0.0",
     "react": "^15.4.0",
     "react-addons-test-utils": "^15.4.1",
     "react-css-themr": "^1.6.0",
@@ -78,10 +77,5 @@
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.2"
-  },
-  "pre-commit": [
-    "lint",
-    "validate",
-    "test"
-  ]
+  }
 }
