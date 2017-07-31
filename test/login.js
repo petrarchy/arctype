@@ -8,18 +8,18 @@ describe('<Login />', () => {
 
     it('should include username input', () => {
         const wrapper = shallow(<LoginBase theme={theme}/>);
-        // console.log(wrapper.debug());
-        expect(wrapper.find('input[type="text"]')).to.have.length(1);
+        // console.log(wrapper.find('[type="text"]').debug());
+        expect(wrapper.find('[type="text"]')).to.have.length(1);
     });
 
     it('should include password input', () => {
         const wrapper = shallow(<LoginBase theme={theme}/>);
-        expect(wrapper.find('input[type="password"]')).to.have.length(1);
+        expect(wrapper.find('[type="password"]')).to.have.length(1);
     });
 
     it('should include checkbox input', () => {
         const wrapper = shallow(<LoginBase theme={theme}/>);
-        expect(wrapper.find('input[type="checkbox"]')).to.have.length(1);
+        expect(wrapper.find('[type="checkbox"]')).to.have.length(1);
     });
 
     it('should include submit button', () => {
