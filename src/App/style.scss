@@ -1,10 +1,65 @@
-$background: #eee;
+@import 'node_modules/normalize-scss/sass/normalize/import-now';
 
-body,
+:root {
+    --ms-bases: 1;
+    --ms-ratios: 1.2;
+}
+
+$background: #eee;
+$base-font: 'Source Sans Pro';
+
+/*
+    Apply a natural box layout model to all elements,
+    but allow components to change, from Paul Irish:
+    https://www.paulirish.com/2012/box-sizing-border-box-ftw
+*/
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: $background;
+    font-family: $base-font;
+}
+
+fieldset {
+    border: none;
+    padding: 0.5rem 0 1.25rem; // -top affects .instruction
+    margin: 0 1rem;
+}
+
+legend {
+    font-size: 2rem;
+    padding-top: 1rem;
+}
+
+legend,
+label,
 button,
 input {
-    background-color: $background;
-    font-family: 'Source Sans Pro';
+    &::first-letter {
+        text-transform: capitalize;
+    }
+}
+
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder {
+    text-transform: capitalize;
+}
+
+input,
+button {
+    border: 1px solid;
+    border-color: #999;
+    font-family: $base-font;
 }
 
 input[type='text'],
@@ -17,7 +72,7 @@ input[type='url'],
 input[type='reset'],
 input[type='submit'],
 button {
-    padding: 0 3px;
+    padding: 0 3px 1px;
     height: 37px;
 }
 
@@ -25,21 +80,7 @@ input + label {
     margin-right: 0.25rem;
 }
 
-label + input {
-    margin-left: 0.5rem;
-}
-
-button,
-input {
-    border: 1px solid;
-}
-
-.login {
-    width: 100%;
-}
-
 button {
-    opacity: 1;
     border-radius: 0.5rem;
 }
 
@@ -59,10 +100,6 @@ button {
         width: 80%;
         left: 10%;
     }
-
-    input::placeholder {
-        display: none;
-    }
 }
 
 @media screen and (min-width: 960px) {
@@ -74,7 +111,7 @@ button {
 
 @media screen and (min-width: 1280px) {
     .container {
-        width: 55%;
-        left: 22.5%;
+        width: 50%;
+        left: 25%;
     }
 }

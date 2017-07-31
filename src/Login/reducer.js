@@ -1,9 +1,12 @@
 import {combineReducers} from 'redux';
 import * as LOGIN from './action_types';
 
-function usernameReducer(state = '', action){
+const userExists = (localStorage.getItem('username') !== null ? localStorage.getItem('username') : '');
+function usernameReducer(state = userExists, action){
     if (action.type === LOGIN.USERNAME){
         return action.value;
+    } else if (action.type === LOGIN.SUBMIT){
+        return (localStorage.getItem('username') !== null ? state : null);
     }
     return state;
 }
@@ -11,12 +14,22 @@ function usernameReducer(state = '', action){
 function passwordReducer(state = '', action){
     if (action.type === LOGIN.PASSWORD){
         return action.value;
+    } else if (action.type === LOGIN.SUBMIT){
+        return null;
     }
     return state;
 }
 
-function rememberReducer(state = false, action){
+const keyExists = (localStorage.getItem('username') !== null);
+function rememberReducer(state = keyExists, action){
     if (action.type === LOGIN.REMEMBER){
+        return action.value;
+    }
+    return state;
+}
+
+function showReducer(state = false, action){
+    if (action.type === LOGIN.SHOW){
         return action.value;
     }
     return state;
@@ -25,5 +38,6 @@ function rememberReducer(state = false, action){
 export default combineReducers({
     username: usernameReducer,
     password: passwordReducer,
-    remember: rememberReducer
+    remember: rememberReducer,
+    show: showReducer
 });
